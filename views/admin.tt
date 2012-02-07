@@ -1,0 +1,9 @@
+<h1>Admin interface</h1>
+
+<ul>
+<li><a href="admin/questions">manage questions</a>
+<li><a href="admin/users">manage users</a>
+<li><a href="admin/categories">manage categories</a>
+<li><a href="admin/subcat">manage subcategories</a>
+
+</ul>

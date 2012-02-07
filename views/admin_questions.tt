@@ -1,0 +1,43 @@
+<h1>Admin interface</h1>
+<h2>adding questions</h2>
+
+<h3>Add a new question to database</h3>
+<form action="/admin/questions/add" method="post">
+    Question: <input type="text" name="quest_text"/><br>
+    Answer A: <input type="text" name="ans_a"/><br>
+    Answer B: <input type="text" name="ans_b"/><br>
+    Answer C: <input type="text" name="ans_c"/><br>
+    Answer D: <input type="text" name="ans_d"/><br>
+    Correct Answer: <input type="text" name="right_ans"/><br>
+    CatID(temp): <input type="text" name="id_categories"/><br>
+    SubCatID(temp): <input type="text" name="id_subcat"/><br>
+
+
+    <input type="submit" name="submit" value="Add Question" />
+</form>
+
+Direct Database Access: <a href="questions">click here</a><br/>
+
+<h3>Current questions in database:</h3>
+<% IF questions.size == 0 %>
+  Database is empty. Please add some questions.
+<% ELSE %>
+<table border=1>
+  <th>ID</th><th>Question</th><th>Answer A</th><th>Answer B</th><th>Answer C</th><th>Answer D</th><th>Correct Answer</th><th>Cat</th><th>SubCat</th>
+  <% FOREACH q IN questions %>
+
+   <tr>
+    <td><% q.id_quest %></td>
+    <td><% q.quest_text %></td>
+    <td><% q.ans_a %></td>
+    <td><% q.ans_b %></td>
+    <td><% q.ans_c %></td>
+    <td><% q.ans_d %></td>
+    <td><% q.right_ans %></td>
+    <td><% q.id_categories %></td>
+    <td><% q.id_subcat %></td>
+   </tr>
+
+  <% END %>
+</table>
+<% END %>

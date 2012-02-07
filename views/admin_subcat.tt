@@ -1,0 +1,28 @@
+<h1>Admin interface</h1>
+<h2>adding subcategories</h2>
+
+<h3>Add a new subcategory to database</h3>
+<form action="/admin/subcat/add" method="post">
+    Subcat name: <input type="text" name="subcat_name"/><br>
+    CatID: <input type="text" name="id_categories"/><br>
+    
+    <input type="submit" name="submit" value="Add" />
+</form>
+
+<h3>Current subcats in database:</h3>
+<% IF subcat.size == 0 %>
+  Database is empty. Please add some subcategories.
+<% ELSE %>
+<table border=1>
+  <th>ID</th><th>Subcategory name</th><th>CatID</th>
+  <% FOREACH s IN subcat %>
+
+   <tr>
+    <td><% s.id_subcat %></td>
+    <td><% s.subcat_name %></td>
+    <td><% s.id_categories %></td>
+   </tr>
+
+  <% END %>
+</table>
+<% END %>

@@ -1,0 +1,26 @@
+<h1>Admin interface</h1>
+<h2>adding categories</h2>
+
+<h3>Add a new category to database</h3>
+<form action="/admin/categories/add" method="post">
+    Cat name: <input type="text" name="cat_text"/><br>
+    
+    <input type="submit" name="submit" value="Add" />
+</form>
+
+<h3>Current categories in database:</h3>
+<% IF categopries.size == 0 %>
+  Database is empty. Please add some categories.
+<% ELSE %>
+<table border=1>
+  <th>ID</th><th>Category name</th>
+  <% FOREACH c IN categories %>
+
+   <tr>
+    <td><% c.id_categories %></td>
+    <td><% c.cat_text %></td>
+   </tr>
+
+  <% END %>
+</table>
+<% END %>
