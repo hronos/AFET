@@ -11,7 +11,7 @@
     <input type="submit" name="submit" value="Add" />
 </form>
 
-Direct Database Access: <a href="db/users">click here</a><br/>
+Direct Access: <a href="db/users">click here</a><br/>
 
 <h3>Current subcats in database:</h3>
 <% IF users.size == 0 %>

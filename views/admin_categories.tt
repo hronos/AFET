@@ -8,6 +8,8 @@
     <input type="submit" name="submit" value="Add" />
 </form>
 
+Direct Access: <a href="db/categories">click here</a><br/>
+
 <h3>Current categories in database:</h3>
 <% IF categopries.size == 0 %>
   Database is empty. Please add some categories.

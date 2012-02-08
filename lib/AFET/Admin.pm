@@ -125,14 +125,52 @@ post '/admin/users/add' => sub {
     redirect '/admin/users';
 };
 
+# User CRUD
+
 simple_crud(
-    record_title => 'Users',
+    record_title => 'User',
     prefix       => '/admin/db/users',
     db_table     => 'users',
     editable     => 1,
     deletable    => 1,
     sortable     => 1,
     key_column  => 'id_user',
+);
+
+# Questions CRUD
+
+simple_crud(
+    record_title => 'Question',
+    prefix       => '/admin/db/questions',
+    db_table     => 'questions',
+    editable     => 1,
+    deletable    => 1,
+    sortable     => 1,
+    key_column  => 'id_quest',
+);
+
+# Categories CRUD
+
+simple_crud(
+    record_title => 'Category',
+    prefix       => '/admin/db/categories',
+    db_table     => 'categories',
+    editable     => 1,
+    deletable    => 1,
+    sortable     => 1,
+    key_column  => 'id_categories',
+);
+
+# Subcat CRUD
+
+simple_crud(
+    record_title => 'Subcategory',
+    prefix       => '/admin/db/subcat',
+    db_table     => 'subcat',
+    editable     => 1,
+    deletable    => 1,
+    sortable     => 1,
+    key_column  => 'id_subcat',
 );
 
 true;

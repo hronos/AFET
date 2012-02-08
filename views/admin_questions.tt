@@ -16,7 +16,7 @@
     <input type="submit" name="submit" value="Add Question" />
 </form>
 
-Direct Database Access: <a href="questions">click here</a><br/>
+Direct Access: <a href="db/questions">click here</a><br/>
 
 <h3>Current questions in database:</h3>
 <% IF questions.size == 0 %>
