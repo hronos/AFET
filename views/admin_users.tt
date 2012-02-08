@@ -1,0 +1,34 @@
+<h1>Admin interface</h1>
+<h2>adding users</h2>
+
+<h3>Add a new user to database</h3>
+<form action="/admin/users/add" method="post">
+    Username: <input type="text" name="username"/><br>
+    Password: <input type="text" name="pass"/><br>
+    Email:    <input type="text" name="email"/><br>
+    RoleID:   <input type="text" name="id_roles"/><br>
+    
+    <input type="submit" name="submit" value="Add" />
+</form>
+
+Direct Database Access: <a href="db/users">click here</a><br/>
+
+<h3>Current subcats in database:</h3>
+<% IF users.size == 0 %>
+  Database is empty. Please add some users.
+<% ELSE %>
+<table border=1>
+  <th>ID</th><th>Username</th><th>Password</th><th>Email</th><th>RoleID</th>
+  <% FOREACH u IN users %>
+
+   <tr>
+    <td><% u.id_user %></td>
+    <td><% u.username %></td>
+    <td><% u.pass %></td>
+    <td><% u.email %></td>
+    <td><% u.id_roles %></td>
+   </tr>
+
+  <% END %>
+</table>
+<% END %>
