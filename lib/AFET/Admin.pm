@@ -92,8 +92,47 @@ post '/admin/subcat/add' => sub {
         }
     );
 
-    ## The category was added to the DB, send user back to the previous page.
+    ## The subcategory was added to the DB, send user back to the previous page.
     redirect '/admin/subcat';
 };
+
+# Users
+
+get '/admin/users' => sub {
+    my $db  = AFET::connect_db();
+    my $sql = 'SELECT id_user, username, pass, email, id_roles FROM users';
+    my $sth = $db->prepare($sql) or die $db->errstr;
+    $sth->execute() or die $sth->errstr;
+    template 'admin_users', { 'users' => $sth->fetchall_arrayref( {} ) };
+};
+post '/admin/users/add' => sub {
+    my $username = params->{username} or die "missing parameter";
+    my $pass     = params->{pass}     or die "missing parameter";
+    my $email    = params->{email}    or die "missing parameter";
+    my $id_roles = params->{id_roles} or die "missing parameter";
+
+    database->quick_insert(
+        'users',
+        {
+            username => $username,
+            pass     => $pass,
+            email    => $email,
+            id_roles => $id_roles,
+        }
+    );
+
+    ## The user was added to the DB, send user back to the previous page.
+    redirect '/admin/users';
+};
+
+simple_crud(
+    record_title => 'Users',
+    prefix       => '/admin/db/users',
+    db_table     => 'users',
+    editable     => 1,
+    deletable    => 1,
+    sortable     => 1,
+    key_column  => 'id_user',
+);
 
 true;
