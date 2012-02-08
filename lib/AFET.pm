@@ -1,3 +1,4 @@
+# Subs common across application
 package AFET;
 use Dancer ':syntax';
 use strict;
@@ -6,33 +7,26 @@ use Dancer::Plugin::Database;
 use Dancer::Plugin::SimpleCRUD;
 use Dancer::Config;
 
-#use AFET::DB;
-
 our $VERSION = '0.1';
-
+# Index page
 get '/' => sub {
     template 'index';
 };
 
+# Database connection initialised here
 sub connect_db {
     my $dbh = database()
       or die $DBI::errstr;
     return $dbh;
 }
 
-my $flash;
-
-sub set_flash {
-    my $message = shift;
-    $flash = $message;
-}
+# Settings common for all templates can be set here
 
 before_template sub {
-   my $tokens = shift;
-       
-   $tokens->{'css_url'} = request->base . 'css/style.css';
-   $tokens->{'login_url'} = uri_for('/login');
-   $tokens->{'logout_url'} = uri_for('/logout');
+    my $tokens = shift;
+
+    $tokens->{'login_url'}  = uri_for('/login');
+    $tokens->{'logout_url'} = uri_for('/logout');
 };
 
 true;

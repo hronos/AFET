@@ -14,7 +14,6 @@
        <a href="<% logout_url %>">Logout</a>
      <% END %>
 </div>
-<div> <% msg %> </div>
 <% content %>
 <div id="footer">
 Copyright 
