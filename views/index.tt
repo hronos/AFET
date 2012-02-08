@@ -1,1 +1,2 @@
 <p>Welcome</p>
+<div><% msg %></div>

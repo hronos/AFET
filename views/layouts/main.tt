@@ -7,6 +7,14 @@
 <link rel="stylesheet" href="<% request.uri_base %>/css/style.css" />
 </head>
 <body>
+<div class=metanav>
+     <% IF not session.logged_in %>
+       <a href="<% login_url %>">Login</a>
+     <% ELSE %>
+       <a href="<% logout_url %>">Logout</a>
+     <% END %>
+</div>
+<div> <% msg %> </div>
 <% content %>
 <div id="footer">
 Copyright 

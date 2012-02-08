@@ -29,5 +29,8 @@ plugins:
     Database:
         driver: 'SQLite'
         database: 'afetdb.db'
+session: "Simple"
+username: "admin"
+password: "password"
 
 
