@@ -6,8 +6,11 @@ use warnings;
 use Dancer::Plugin::Database;
 use Dancer::Plugin::SimpleCRUD;
 use Dancer::Config;
+use Dancer::Request::Upload;
 use AFET;
+use File::Copy;
 
+use Data::Dumper;
 get '/admin' => sub {
     template 'admin',;
 };
@@ -17,7 +20,7 @@ get '/admin' => sub {
 get '/admin/questions' => sub {
     my $db = AFET::connect_db();
     my $sql =
-'SELECT id_quest, quest_text, ans_a, ans_b, ans_c, ans_d, right_ans, id_categories, id_subcat FROM questions';
+'SELECT id_quest, quest_text, ans_a, ans_b, ans_c, ans_d, right_ans, id_subcat, img FROM questions';
     my $sth = $db->prepare($sql) or die $db->errstr;
     $sth->execute() or die $sth->errstr;
     template 'admin_questions',
@@ -25,25 +28,33 @@ get '/admin/questions' => sub {
 };
 post '/admin/questions/add' => sub {
     my $quest_text = params->{quest_text} or die "missing question parameter";
-    my $ans_a      = params->{ans_a}      or die "missing parameter";
+    my $ans_a      = params->{ans_a}      or die "missing question parameter";
     my $ans_b      = params->{ans_b}      or die "missing parameter";
     my $ans_c      = params->{ans_c}      or die "missing parameter";
     my $ans_d      = params->{ans_d}      or die "missing parameter";
     my $right_ans  = params->{right_ans}  or die "missing parameter";
-    my $id_cat    = params->{id_categories} or die "missing parameter";
-    my $id_subcat = params->{id_subcat}     or die "missing parameter";
+    my $id_subcat  = params->{id_subcat}  or die "missing parameter";
+    my $upload     = upload('image');
+    my $img_name    = generate_name(15);
+    my $path = setting('upload_path');
+    my $img =  "$path/$img_name";
+    debug "PATH =======" . $img;
+    my $upload_success = $upload->copy_to($img);
+    my $img_src = "/upload/$img_name";
+    debug "TEST ++++ " . $upload_success;
+    
 
     database->quick_insert(
         'questions',
         {
-            quest_text    => $quest_text,
-            ans_a         => $ans_a,
-            ans_b         => $ans_b,
-            ans_c         => $ans_c,
-            ans_d         => $ans_d,
-            right_ans     => $right_ans,
-            id_categories => $id_cat,
-            id_subcat     => $id_subcat,
+            quest_text => $quest_text,
+            ans_a      => $ans_a,
+            ans_b      => $ans_b,
+            ans_c      => $ans_c,
+            ans_d      => $ans_d,
+            right_ans  => $right_ans,
+            id_subcat  => $id_subcat,
+            img        => $img_src,
 
         }
     );
@@ -134,7 +145,7 @@ simple_crud(
     editable     => 1,
     deletable    => 1,
     sortable     => 1,
-    key_column  => 'id_user',
+    key_column   => 'id_user',
 );
 
 # Questions CRUD
@@ -146,7 +157,7 @@ simple_crud(
     editable     => 1,
     deletable    => 1,
     sortable     => 1,
-    key_column  => 'id_quest',
+    key_column   => 'id_quest',
 );
 
 # Categories CRUD
@@ -158,7 +169,7 @@ simple_crud(
     editable     => 1,
     deletable    => 1,
     sortable     => 1,
-    key_column  => 'id_categories',
+    key_column   => 'id_categories',
 );
 
 # Subcat CRUD
@@ -170,7 +181,19 @@ simple_crud(
     editable     => 1,
     deletable    => 1,
     sortable     => 1,
-    key_column  => 'id_subcat',
+    key_column   => 'id_subcat',
 );
 
+# Additional subs
+
+sub generate_name {     # Generate random string to use as filename
+    my $name;
+    my $length = shift;
+    my @chars = ('a'..'z', 'A'..'Z', '0'..'9', '_');
+    foreach (1..$length) {
+        $name.=$chars[rand @chars];
+    }
+    $name = "$name\.png";
+    return $name;
+}
 true;

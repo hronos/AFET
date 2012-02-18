@@ -33,4 +33,6 @@ session: "Simple"
 username: "admin"
 password: "password"
 
+upload_path: "/home/webservice/AFET/public/upload"
+
 
