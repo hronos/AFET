@@ -1,0 +1,13 @@
+<h1>New user registration</h1>
+
+<form action="/register/new" method="post">
+    Username: <input type="text" name="username"/><br>
+    Password: <input type="text" name="pass"/><br>
+    Email:    <input type="text" name="email"/><br>
+    <input type="hidden" name="id_roles" value="2"/><br>
+
+    <input type="submit" name="submit" value="Register" />
+</form>
+
+
+
