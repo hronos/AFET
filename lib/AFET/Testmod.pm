@@ -8,13 +8,15 @@ use Dancer::Plugin::SimpleCRUD;
 use Dancer::Config;
 use Dancer::Request::Upload;
 use Dancer::Request;
+use Dancer::Plugin::Ajax;
 
 #use AFET;
 
 use Data::Dumper;
 
+my $label = "no label";
 get '/testmod' => sub {
-    template 'testmod';
+    template 'testmod' => {label => $label};
 };
 
 post '/testmod/upload' => sub {
@@ -24,4 +26,17 @@ post '/testmod/upload' => sub {
     debug "TEST FH ===>" . $fh;
     my $content = $file->content;
     debug "TEST CONT ====> " . $content;
+};
+
+post '/testmod/test_ajax' => sub {
+    my $username = params->{'username'};
+    my $password = params->{'password'};
+    debug "USERNAME ======>" . params->{'username'};
+    debug "PASSWORD ======>" . params->{'password'};
+    if ($username ne "test" && $password ne "password" ){
+        $label = "Login failed";
+    }else {
+        $label = "Login successful";
+    }
+    template 'testmod'  => {label => $label};
 };

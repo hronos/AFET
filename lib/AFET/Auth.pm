@@ -7,6 +7,7 @@ use warnings;
 use Dancer::Plugin::Database;
 use Dancer::Config;
 use Dancer::Plugin::Passphrase;
+use Dancer::Plugin::Ajax;
 
 #use AFET;
 

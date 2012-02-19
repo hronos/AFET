@@ -5,6 +5,8 @@
 <meta http-equiv="Content-type" content="text/html; charset=<% settings.charset %>" />
 <title>AFET</title>
 <link rel="stylesheet" href="<% request.uri_base %>/css/style.css" />
+<script type="text/javascript" src="<% request.uri_base %>/javascripts/jquery.js"></script>
+<script type="text/javascript" src="<% request.uri_base %>/javascripts/test.js"></script>
 </head>
 <body>
 <div class=metanav>

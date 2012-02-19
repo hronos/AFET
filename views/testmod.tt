@@ -1,4 +1,4 @@
-Upload image
+<h3>Test upload image</h3>
 
 <form action="/testmod/upload" method="post" enctype="multipart/form-data">
 
@@ -7,4 +7,15 @@ File to upload:
 <input type="submit" value="Upload">
 
 </form>
+
+<h3> Test AJAX </h3>
+<form action="/testmod/test_ajax" form id="login_form" method="post">
+    <p>Username: <input type="text" name="username" id="username" /></p>
+    <p>Password: <input type="password" name="password" id="password"/></p>
+    <p><input type="submit" value="Login" /></p>
+</form>
+<div id="status">
+    <p><% label %></p>
+    <a href="#">Test link</a>
+</div>
 
