@@ -29,10 +29,19 @@ plugins:
     Database:
         driver: 'SQLite'
         database: 'afetdb.db'
+    ValidateTiny:
+        rules_dir: "lib/validation"
+        error_prefix: err_
+        is_full: 1
 session: "Simple"
 username: "admin"
 password: "password"
 
+# Where to upload files
 upload_path: "/home/webservice/AFET/public/upload"
+
+
+
+
 
 

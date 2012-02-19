@@ -19,3 +19,15 @@ File to upload:
     <a href="#">Test link</a>
 </div>
 
+<h3>User validation test</h3>
+
+<form action="/testmod/test_user" form id="reg_form" method="post">
+    <p>Username: <input type="text" name="usr" id="usr" /><span><% err_user %></span></p>
+    <p>Password: <input type="password" name="pwd" id="pwd"/><span><% err_pwd %></span></p>
+    <p>Password again : <input type="password" name="pwd2" id="pwd2"/><% err_pwd2 %></span></r>
+    <p><input type="submit" value="Register" /></p>
+</form>
+<div id="status">
+    <p><% label %></p>
+    <a href="#">Test link</a>
+</div>

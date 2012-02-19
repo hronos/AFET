@@ -4,6 +4,7 @@ $(document).ready(function() {
     });
     $("#login_form").submit(function() {
         alert("form submitted!!");
+        $("#login_form")[0].reset();
     });
                 return false;
 });

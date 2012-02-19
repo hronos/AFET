@@ -2,7 +2,8 @@
 
 <form action="/register/new" method="post">
     Username: <input type="text" name="username"/><br>
-    Password: <input type="text" name="pass"/><br>
+    Password: <input type="password" name="pass"/><br>
+    Retype password: <input type="password" name="pass"/><br>
     Email:    <input type="text" name="email"/><br>
     <input type="hidden" name="id_roles" value="2"/><br>
 
