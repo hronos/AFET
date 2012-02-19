@@ -24,9 +24,10 @@ sub connect_db {
 
 before_template sub {
     my $tokens = shift;
-
-    $tokens->{'login_url'}  = uri_for('/login');
-    $tokens->{'logout_url'} = uri_for('/logout');
+    # Set urls
+    $tokens->{'login_url'}  = uri_for('/login'); # Login url
+    $tokens->{'logout_url'} = uri_for('/logout'); # Logout url
+    $tokens->{'register_url'} = uri_for('/register'); # Register url
 };
 
 true;
