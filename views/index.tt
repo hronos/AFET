@@ -1,2 +1,8 @@
-<p>Welcome</p>
+<div class="text">
+<p>Welcome to the new Armed Forces Entry Test preparation system. Here you can practice tests for the Army, RAF and Royal Navy. This system contains hundreds of sample questions that are appropriate for anyone who is applying to join any of the three UK Armed Forces.</p>
+<p>Click on the logo to choose an appropriate section</p>
+</div>
+<a href="/navy"><img id="navy" src="/images/navy.jpg"/></a>
+<a href="/army"><img id="army" src="/images/army.jpg"/></a>
+<a href="/raf"><img id="raf" src="/images/raf.jpg"/></a>
 <div><% msg %></div>

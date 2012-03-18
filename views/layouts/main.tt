@@ -6,22 +6,36 @@
 <title>AFET</title>
 <link rel="stylesheet" href="<% request.uri_base %>/css/style.css" />
 <script type="text/javascript" src="<% request.uri_base %>/javascripts/jquery.js"></script>
-<script type="text/javascript" src="<% request.uri_base %>/javascripts/test.js"></script>
 </head>
 <body>
-<div class=metanav>
-     <% IF not session.logged_in %>
-       <ul>
+<div class="metanav" >
+    <ul >
+    <% IF not session.logged_in %>
        <li><a href="<% login_url %>">Login</a></li>
        <li><a href="<% register_url %>">Register</a></li>
-       </ul>
+     </ul>
      <% ELSE %>
-       <a href="<% logout_url %>">Logout</a>
+       <li><a href="<% logout_url %>">Logout</a></li>
      <% END %>
+    </ul>
 </div>
-<% content %>
-<div id="footer">
-Copyright 
+<div id="wrapper">
+<div class="navigation">
+    <ul>
+       <li><a href="/army">Army</a></li>
+       <li><a href="/navy">Navy</a></li>
+       <li><a href="/raf">RAF</a></li>
+       <li><a href="#">Your profile</a></li>
+       <li><a href="#">User manual</a></li>
+       <li><a href="#">Contact</a></li>
+   </ul>
+</div>
+    <div id="left"></div>
+    <div id="content">
+        <% content %>
+    </div>
+    <div id="right"></div>
+    <div id="footer">Copyright</div>
 </div>
 </body>
 </html>

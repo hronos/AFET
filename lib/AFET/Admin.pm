@@ -35,13 +35,16 @@ post '/admin/questions/add' => sub {
     my $right_ans  = params->{right_ans}  or die "missing parameter";
     my $id_subcat  = params->{id_subcat}  or die "missing parameter";
     my $upload     = upload('image');
-    my $img_name    = generate_name(15);
-    my $path = setting('upload_path');
-    my $img =  "$path/$img_name";
-    debug "PATH =======" . $img;
-    my $upload_success = $upload->copy_to($img);
-    my $img_src = "/upload/$img_name";
-    debug "TEST ++++ " . $upload_success;
+    my $img_src;
+    if ( defined $upload ){
+        my $img_name    = generate_name(15);
+        my $path = setting('upload_path');
+        my $img =  "$path/$img_name";
+        debug "PATH =======" . $img;
+        my $upload_success = $upload->copy_to($img);
+        $img_src = "/upload/$img_name";
+        debug "TEST ++++ " . $upload_success;
+    }
     
 
     database->quick_insert(

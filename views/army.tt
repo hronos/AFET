@@ -1,0 +1,14 @@
+<p> We have the following test options: </p>
+
+<ul>
+    <li><a href="#">Whole test</a></li>
+    <li><a href="#">Whole test against the clock</a></li>
+    <li>Individual categories</li>
+    <ul>
+        <li><a href="#">Non-verbal reasoning</a></li>
+        <li><a href="#">Verbal reasoning</a></li>
+        <li><a href="#">Technical selection</a></li>
+        <li><a href="#">Numeracy</a></li>
+    </ul>
+    <li><a href="#">Custom test</a></li>
+</ul>
