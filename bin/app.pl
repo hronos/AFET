@@ -5,4 +5,5 @@ use AFET::Admin;
 use AFET::Auth;
 use AFET::Testmod;
 use AFET::Routes;
+use AFET::Test;
 dance;

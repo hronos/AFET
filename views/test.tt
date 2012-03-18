@@ -1,0 +1,45 @@
+<h1> Whole test </h1>
+<p>This test is not timed, you can do it in your own time</p>
+<p><% a  %></p>
+
+<form>
+<h2>Non verbal reasoning</h2>
+    <% FOREACH q IN nonverb %>
+        <br><br><% q.id_quest %>.&nbsp
+        <% q.quest_text %><br><br>
+        <input type ="radio" name=<% q.id_quest %> value = "ans_a"><% q.ans_a %>
+        <input type ="radio" name=<% q.id_quest %> value = "ans_b"><% q.ans_b %>
+        <input type ="radio" name=<% q.id_quest %> value = "ans_c"><% q.ans_c %>
+        <input type ="radio" name=<% q.id_quest %> value = "ans_d"><% q.ans_d %>
+    <% END %>
+<h2>Verbal reasoning</h2>
+     <% FOREACH q IN verb %>
+        <br><br><% q.id_quest %>.&nbsp
+        <% q.quest_text %><br><br>
+        <input type ="radio" name=<% q.id_quest %> value = "ans_a"><% q.ans_a %>
+        <input type ="radio" name=<% q.id_quest %> value = "ans_b"><% q.ans_b %>
+        <input type ="radio" name=<% q.id_quest %> value = "ans_c"><% q.ans_c %>
+        <input type ="radio" name=<% q.id_quest %> value = "ans_d"><% q.ans_d %>
+    <% END %>
+<h2>Numeracy</h2>
+     <% FOREACH q IN num %>
+        <br><br><% q.id_quest %>.&nbsp
+        <% q.quest_text %><br><br>
+        <input type ="radio" name=<% q.id_quest %> value = "ans_a"><% q.ans_a %>
+        <input type ="radio" name=<% q.id_quest %> value = "ans_b"><% q.ans_b %>
+        <input type ="radio" name=<% q.id_quest %> value = "ans_c"><% q.ans_c %>
+        <input type ="radio" name=<% q.id_quest %> value = "ans_d"><% q.ans_d %>
+    <% END %>
+<% IF service != 'army'  %>
+<h2>Mechanical Comprehension</h2>
+    <% FOREACH q IN mech %>
+        <br><br><% q.id_quest %>.&nbsp
+        <% q.quest_text %><br><br>
+        <input type ="radio" name=<% q.id_quest %> value = "ans_a"><% q.ans_a %>
+        <input type ="radio" name=<% q.id_quest %> value = "ans_b"><% q.ans_b %>
+        <input type ="radio" name=<% q.id_quest %> value = "ans_c"><% q.ans_c %>
+        <input type ="radio" name=<% q.id_quest %> value = "ans_d"><% q.ans_d %>
+    <% END %>
+<% END  %>
+</form>
+

@@ -1,7 +1,7 @@
 <p> We have the following test options: </p>
 
 <ul>
-    <li><a href="#">Whole test</a></li>
+    <li><a href="/test/generate/army">Whole test</a></li>
     <li><a href="#">Whole test against the clock</a></li>
     <li>Individual categories</li>
     <ul>
