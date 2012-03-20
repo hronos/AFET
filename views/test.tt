@@ -2,44 +2,69 @@
 <p>This test is not timed, you can do it in your own time</p>
 <p><% a  %></p>
 
-<form>
+<form action="/test/check_answers" method="post">
 <h2>Non verbal reasoning</h2>
+<ol>
     <% FOREACH q IN nonverb %>
-        <br><br><% q.id_quest %>.&nbsp
-        <% q.quest_text %><br><br>
-        <input type ="radio" name=<% q.id_quest %> value = "ans_a"><% q.ans_a %>
-        <input type ="radio" name=<% q.id_quest %> value = "ans_b"><% q.ans_b %>
-        <input type ="radio" name=<% q.id_quest %> value = "ans_c"><% q.ans_c %>
-        <input type ="radio" name=<% q.id_quest %> value = "ans_d"><% q.ans_d %>
+        <li>
+        <input type="hidden" name="id_quest" value="<% q.id_quest %>"/>
+        <input type="hidden" name="right_ans" value="<% q.right_ans %>"/>
+        <% q.quest_text %><br>
+        <br><img src="<% q.img %>"/><br><br>
+        <input type ="radio" name=<% q.id_quest %> value = "A"><% q.ans_a %>
+        <input type ="radio" name=<% q.id_quest %> value = "B"><% q.ans_b %>
+        <input type ="radio" name=<% q.id_quest %> value = "C"><% q.ans_c %>
+        <input type ="radio" name=<% q.id_quest %> value = "D"><% q.ans_d %>
+        </li><br>
     <% END %>
+</ol>
 <h2>Verbal reasoning</h2>
+<ol>
      <% FOREACH q IN verb %>
-        <br><br><% q.id_quest %>.&nbsp
+        <li>
+        <input type="hidden" name="id_quest" value="<% q.id_quest %>"/>
+        <input type="hidden" name="right_ans" value="<% q.right_ans %>"/>
         <% q.quest_text %><br><br>
-        <input type ="radio" name=<% q.id_quest %> value = "ans_a"><% q.ans_a %>
-        <input type ="radio" name=<% q.id_quest %> value = "ans_b"><% q.ans_b %>
-        <input type ="radio" name=<% q.id_quest %> value = "ans_c"><% q.ans_c %>
-        <input type ="radio" name=<% q.id_quest %> value = "ans_d"><% q.ans_d %>
+        <br><img src="<% q.img %>"/><br>
+        <input type ="radio" name=<% q.id_quest %> value = "A"><% q.ans_a %>
+        <input type ="radio" name=<% q.id_quest %> value = "B"><% q.ans_b %>
+        <input type ="radio" name=<% q.id_quest %> value = "C"><% q.ans_c %>
+        <input type ="radio" name=<% q.id_quest %> value = "D"><% q.ans_d %>
+        </li><br>
     <% END %>
+</ol>
 <h2>Numeracy</h2>
+<ol>
      <% FOREACH q IN num %>
-        <br><br><% q.id_quest %>.&nbsp
+        <li>
+        <input type="hidden" name="id_quest" value="<% q.id_quest %>"/>
+        <input type="hidden" name="right_ans" value="<% q.right_ans %>"/>
         <% q.quest_text %><br><br>
-        <input type ="radio" name=<% q.id_quest %> value = "ans_a"><% q.ans_a %>
-        <input type ="radio" name=<% q.id_quest %> value = "ans_b"><% q.ans_b %>
-        <input type ="radio" name=<% q.id_quest %> value = "ans_c"><% q.ans_c %>
-        <input type ="radio" name=<% q.id_quest %> value = "ans_d"><% q.ans_d %>
+        <br><img src="<% q.img %>"/><br>
+        <input type ="radio" name=<% q.id_quest %> value = "A"><% q.ans_a %>
+        <input type ="radio" name=<% q.id_quest %> value = "B"><% q.ans_b %>
+        <input type ="radio" name=<% q.id_quest %> value = "C"><% q.ans_c %>
+        <input type ="radio" name=<% q.id_quest %> value = "D"><% q.ans_d %>
+        </li><br>
     <% END %>
+</ol>
 <% IF service != 'army'  %>
 <h2>Mechanical Comprehension</h2>
+<ol>
     <% FOREACH q IN mech %>
-        <br><br><% q.id_quest %>.&nbsp
+        <li>
+        <input type="hidden" name="id_quest" value="<% q.id_quest %>"/>
+        <input type="hidden" name="right_ans" value="<% q.right_ans %>"/>
         <% q.quest_text %><br><br>
-        <input type ="radio" name=<% q.id_quest %> value = "ans_a"><% q.ans_a %>
-        <input type ="radio" name=<% q.id_quest %> value = "ans_b"><% q.ans_b %>
-        <input type ="radio" name=<% q.id_quest %> value = "ans_c"><% q.ans_c %>
-        <input type ="radio" name=<% q.id_quest %> value = "ans_d"><% q.ans_d %>
+        <br><img src="<% q.img %>"/><br>
+        <input type ="radio" name=<% q.id_quest %> value = "A"><% q.ans_a %>
+        <input type ="radio" name=<% q.id_quest %> value = "B"><% q.ans_b %>
+        <input type ="radio" name=<% q.id_quest %> value = "C"><% q.ans_c %>
+        <input type ="radio" name=<% q.id_quest %> value = "D"><% q.ans_d %>
+        </li><br>
     <% END %>
+</ol>
 <% END  %>
+<input type="submit" name="submit" value="Check!" />
 </form>
 

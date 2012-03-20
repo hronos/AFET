@@ -28,6 +28,7 @@ my $nonverb;
 my $verb;
 my $mech;
 my $num;
+my $result;
 
 sub generate {
     
@@ -51,7 +52,22 @@ sub generate {
         $num = get_questions($raf_num);
         $mech = get_questions($raf_mech);
     }
+    debug "Mech =====" . $mech;
     return ($nonverb, $verb, $num, $mech);  
+    
+}
+sub check_answers {
+    $result = 0;
+    my %hash;
+    my @right_answers;
+    my $given_answers;
+    my @ids = params->{id_quest};
+    %hash = (params->{id_quest}, params->{right_ans});
+    
+    #print Dumper (@ids);
+    #print Dumper (@right_answers);
+    print Dumper (%hash);
+
 }
 sub get_questions {
     $sql = shift;
