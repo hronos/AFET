@@ -25,6 +25,11 @@ get '/test/generate/:service' => sub {
 };
 
 post '/test/check_answers' => sub {
-    my $result = AFET::Test->check_answers();
+    
+    my ( $result, $wrong_subcats) = AFET::Test->check_answers();
+    #print Dumper ($unique_subs);
+    debug "SUBS ======>" . $wrong_subcats;
+    template 'result',
+    {'result' => $result, 'wrong_subs' => $wrong_subcats};
 };
 

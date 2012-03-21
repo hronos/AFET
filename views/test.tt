@@ -8,7 +8,8 @@
     <% FOREACH q IN nonverb %>
         <li>
         <input type="hidden" name="id_quest" value="<% q.id_quest %>"/>
-        <input type="hidden" name="right_ans" value="<% q.right_ans %>"/>
+        <input type="hidden" name="right_ans_<% q.id_quest %>" value="<% q.right_ans %>"/>
+        <input type="hidden" name="subcat_<% q.id_quest %>" value="<% q.id_subcat %>"/>
         <% q.quest_text %><br>
         <br><img src="<% q.img %>"/><br><br>
         <input type ="radio" name="answer_<% q.id_quest %>" value = "A"><% q.ans_a %>
@@ -23,7 +24,8 @@
      <% FOREACH q IN verb %>
         <li>
         <input type="hidden" name="id_quest" value="<% q.id_quest %>"/>
-        <input type="hidden" name="right_ans" value="<% q.right_ans %>"/>
+        <input type="hidden" name="right_ans_<% q.id_quest %>" value="<% q.right_ans %>"/>
+        <input type="hidden" name="subcat_<% q.id_quest %>" value="<% q.id_subcat %>"/>
         <% q.quest_text %><br><br>
         <br><img src="<% q.img %>"/><br>
         <input type ="radio" name="answer_<% q.id_quest %>" value = "A"><% q.ans_a %>
@@ -38,7 +40,8 @@
      <% FOREACH q IN num %>
         <li>
         <input type="hidden" name="id_quest" value="<% q.id_quest %>"/>
-        <input type="hidden" name="right_ans" value="<% q.right_ans %>"/>
+        <input type="hidden" name="right_ans_<% q.id_quest %>" value="<% q.right_ans %>"/>
+        <input type="hidden" name="subcat_<% q.id_quest %>" value="<% q.id_subcat %>"/>
         <% q.quest_text %><br><br>
         <br><img src="<% q.img %>"/><br>
         <input type ="radio" name="answer_<% q.id_quest %>" value = "A"><% q.ans_a %>
@@ -54,7 +57,8 @@
     <% FOREACH q IN mech %>
         <li>
         <input type="hidden" name="id_quest" value="<% q.id_quest %>"/>
-        <input type="hidden" name="right_ans" value="<% q.right_ans %>"/>
+        <input type="hidden" name="right_ans_<% q.id_quest %>" value="<% q.right_ans %>"/>
+        <input type="hidden" name="subcat_<% q.id_quest %>" value="<% q.id_subcat %>"/>
         <% q.quest_text %><br><br>
         <br><img src="<% q.img %>"/><br>
         <input type ="radio" name="answer_<% q.id_quest %>" value = "A"><% q.ans_a %>
