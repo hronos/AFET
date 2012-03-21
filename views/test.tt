@@ -11,10 +11,10 @@
         <input type="hidden" name="right_ans" value="<% q.right_ans %>"/>
         <% q.quest_text %><br>
         <br><img src="<% q.img %>"/><br><br>
-        <input type ="radio" name=<% q.id_quest %> value = "A"><% q.ans_a %>
-        <input type ="radio" name=<% q.id_quest %> value = "B"><% q.ans_b %>
-        <input type ="radio" name=<% q.id_quest %> value = "C"><% q.ans_c %>
-        <input type ="radio" name=<% q.id_quest %> value = "D"><% q.ans_d %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "A"><% q.ans_a %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "B"><% q.ans_b %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "C"><% q.ans_c %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "D"><% q.ans_d %>
         </li><br>
     <% END %>
 </ol>
@@ -26,10 +26,10 @@
         <input type="hidden" name="right_ans" value="<% q.right_ans %>"/>
         <% q.quest_text %><br><br>
         <br><img src="<% q.img %>"/><br>
-        <input type ="radio" name=<% q.id_quest %> value = "A"><% q.ans_a %>
-        <input type ="radio" name=<% q.id_quest %> value = "B"><% q.ans_b %>
-        <input type ="radio" name=<% q.id_quest %> value = "C"><% q.ans_c %>
-        <input type ="radio" name=<% q.id_quest %> value = "D"><% q.ans_d %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "A"><% q.ans_a %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "B"><% q.ans_b %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "C"><% q.ans_c %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "D"><% q.ans_d %>
         </li><br>
     <% END %>
 </ol>
@@ -41,10 +41,10 @@
         <input type="hidden" name="right_ans" value="<% q.right_ans %>"/>
         <% q.quest_text %><br><br>
         <br><img src="<% q.img %>"/><br>
-        <input type ="radio" name=<% q.id_quest %> value = "A"><% q.ans_a %>
-        <input type ="radio" name=<% q.id_quest %> value = "B"><% q.ans_b %>
-        <input type ="radio" name=<% q.id_quest %> value = "C"><% q.ans_c %>
-        <input type ="radio" name=<% q.id_quest %> value = "D"><% q.ans_d %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "A"><% q.ans_a %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "B"><% q.ans_b %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "C"><% q.ans_c %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "D"><% q.ans_d %>
         </li><br>
     <% END %>
 </ol>
@@ -57,14 +57,14 @@
         <input type="hidden" name="right_ans" value="<% q.right_ans %>"/>
         <% q.quest_text %><br><br>
         <br><img src="<% q.img %>"/><br>
-        <input type ="radio" name=<% q.id_quest %> value = "A"><% q.ans_a %>
-        <input type ="radio" name=<% q.id_quest %> value = "B"><% q.ans_b %>
-        <input type ="radio" name=<% q.id_quest %> value = "C"><% q.ans_c %>
-        <input type ="radio" name=<% q.id_quest %> value = "D"><% q.ans_d %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "A"><% q.ans_a %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "B"><% q.ans_b %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "C"><% q.ans_c %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "D"><% q.ans_d %>
         </li><br>
     <% END %>
 </ol>
 <% END  %>
-<input type="submit" name="submit" value="Check!" />
+<input type="submit" value="Check!" />
 </form>
 

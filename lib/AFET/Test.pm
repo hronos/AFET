@@ -58,15 +58,21 @@ sub generate {
 }
 sub check_answers {
     $result = 0;
-    my %hash;
+    my $hash;
     my @right_answers;
-    my $given_answers;
-    my @ids = params->{id_quest};
-    %hash = (params->{id_quest}, params->{right_ans});
+    my $given_answer;
+    my $ids_ref = params->{'id_quest'};
+    foreach my $id(ref($ids_ref) ? @$ids_ref : $ids_ref ){
+        print Dumper ($id);
+        $given_answer = params->{"answer_$id"};
+        print Dumper ($given_answer);
+        
+    }
     
+    
+    $hash = params;
     #print Dumper (@ids);
-    #print Dumper (@right_answers);
-    print Dumper (%hash);
+    #print Dumper ($hash);
 
 }
 sub get_questions {
