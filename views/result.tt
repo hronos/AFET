@@ -1,0 +1,9 @@
+<p>Your result is <% result  %>!</p>
+<p>Subcategories you need to pay attention to are:
+<% FOREACH s IN wrong_subs.split(':')  %>
+    <ul>
+    <% IF s !='' %>
+    <li><% s %></li>
+    <% END %>
+    </ul>
+<% END  %>

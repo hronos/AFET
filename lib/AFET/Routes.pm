@@ -5,6 +5,7 @@ use strict;
 use warnings;
 use Dancer::Config;
 use AFET;
+use Data::Dumper;
 
 get '/army' => sub {
     template 'army',;
@@ -29,6 +30,10 @@ post '/test/check_answers' => sub {
     my ( $result, $wrong_subcats) = AFET::Test->check_answers();
     #print Dumper ($unique_subs);
     debug "SUBS ======>" . $wrong_subcats;
+    #print ($wrong_subcats);
+    $wrong_subcats =~ s/([[:upper:]])/:$1/g;
+   
+    #print Dumper ($wrong_subcats);
     template 'result',
     {'result' => $result, 'wrong_subs' => $wrong_subcats};
 };

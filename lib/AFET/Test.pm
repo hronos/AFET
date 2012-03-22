@@ -15,7 +15,7 @@ my $army_nonverb =
 my $army_verb =
 'SELECT id_quest, quest_text, ans_a, ans_b, ans_c, ans_d, right_ans, img, id_subcat FROM questions where id_subcat = 5 OR id_subcat = 6 OR id_subcat = 8 ORDER BY RANDOM() LIMIT 20';
 my $army_num =
-'SELECT id_quest, quest_text, ans_a, ans_b, ans_c, ans_d, right_ans, id_subcat img FROM questions where id_subcat = 29 OR id_subcat = 20  OR id_subcat = 24 OR id_subcat = 25 ORDER BY RANDOM() LIMIT 20';
+'SELECT id_quest, quest_text, ans_a, ans_b, ans_c, ans_d, right_ans, img, id_subcat FROM questions where id_subcat = 29 OR id_subcat = 20  OR id_subcat = 24 OR id_subcat = 25 ORDER BY RANDOM() LIMIT 20';
 
 my $navy_nonverb =
 'SELECT id_quest, quest_text, ans_a, ans_b, ans_c, ans_d, right_ans, img, id_subcat FROM questions where id_subcat = 2 OR id_subcat = 4 ORDER BY RANDOM() LIMIT 20';
@@ -49,6 +49,7 @@ sub generate {
         $nonverb = get_questions($army_nonverb);
         $verb    = get_questions($army_verb);
         $num     = get_questions($army_num);
+        $mech    = '';
     }
     elsif ( $service eq 'navy' ) {
         $nonverb = get_questions($navy_nonverb);
@@ -82,7 +83,7 @@ sub check_answers {
         }
         else {
             my $wrong_subcat = params->{"subcat_$id"};
-            if ( defined $wrong_subcat ) {
+            if ( $wrong_subcat ) {
                 my $subcat = get_subcat_name($wrong_subcat);
                 push (@wrong_subcats, $subcat);
                 debug "WRONG SUBS" . @wrong_subcats; 
@@ -93,7 +94,7 @@ sub check_answers {
     @seen{@wrong_subcats} = ();
     my @unique_subs = keys %seen;
     
-    print Dumper(@unique_subs);
+    #print Dumper(@unique_subs);
     my $sub_scal = "@unique_subs";
     return ( $result, $sub_scal);
 

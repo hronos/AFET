@@ -11,7 +11,7 @@
         <input type="hidden" name="right_ans_<% q.id_quest %>" value="<% q.right_ans %>"/>
         <input type="hidden" name="subcat_<% q.id_quest %>" value="<% q.id_subcat %>"/>
         <% q.quest_text %><br>
-        <br><img src="<% q.img %>"/><br><br>
+        <% IF q.img %><br><img src="<% q.img %>"/><br><br><% END %>
         <input type ="radio" name="answer_<% q.id_quest %>" value = "A"><% q.ans_a %>
         <input type ="radio" name="answer_<% q.id_quest %>" value = "B"><% q.ans_b %>
         <input type ="radio" name="answer_<% q.id_quest %>" value = "C"><% q.ans_c %>
@@ -27,7 +27,7 @@
         <input type="hidden" name="right_ans_<% q.id_quest %>" value="<% q.right_ans %>"/>
         <input type="hidden" name="subcat_<% q.id_quest %>" value="<% q.id_subcat %>"/>
         <% q.quest_text %><br><br>
-        <br><img src="<% q.img %>"/><br>
+        <% IF q.img %><br><img src="<% q.img %>"/><br><% END %>
         <input type ="radio" name="answer_<% q.id_quest %>" value = "A"><% q.ans_a %>
         <input type ="radio" name="answer_<% q.id_quest %>" value = "B"><% q.ans_b %>
         <input type ="radio" name="answer_<% q.id_quest %>" value = "C"><% q.ans_c %>
@@ -42,8 +42,8 @@
         <input type="hidden" name="id_quest" value="<% q.id_quest %>"/>
         <input type="hidden" name="right_ans_<% q.id_quest %>" value="<% q.right_ans %>"/>
         <input type="hidden" name="subcat_<% q.id_quest %>" value="<% q.id_subcat %>"/>
+        <% IF q.img %><br><img src="<% q.img %>"/><br><% END %>
         <% q.quest_text %><br><br>
-        <br><img src="<% q.img %>"/><br>
         <input type ="radio" name="answer_<% q.id_quest %>" value = "A"><% q.ans_a %>
         <input type ="radio" name="answer_<% q.id_quest %>" value = "B"><% q.ans_b %>
         <input type ="radio" name="answer_<% q.id_quest %>" value = "C"><% q.ans_c %>
@@ -60,7 +60,7 @@
         <input type="hidden" name="right_ans_<% q.id_quest %>" value="<% q.right_ans %>"/>
         <input type="hidden" name="subcat_<% q.id_quest %>" value="<% q.id_subcat %>"/>
         <% q.quest_text %><br><br>
-        <br><img src="<% q.img %>"/><br>
+        <% IF q.img %><br><img src="<% q.img %>"/><br><% END %>
         <input type ="radio" name="answer_<% q.id_quest %>" value = "A"><% q.ans_a %>
         <input type ="radio" name="answer_<% q.id_quest %>" value = "B"><% q.ans_b %>
         <input type ="radio" name="answer_<% q.id_quest %>" value = "C"><% q.ans_c %>
