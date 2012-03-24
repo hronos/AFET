@@ -1,4 +1,5 @@
 <p>Your result is <% result  %>!</p>
+<p><% time_taken %></p>
 <p>Subcategories you need to pay attention to are:
 <% FOREACH s IN wrong_subs.split(':')  %>
     <ul>

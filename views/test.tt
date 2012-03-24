@@ -3,6 +3,9 @@
 <p><% a  %></p>
 
 <form action="/test/check_answers" method="post">
+<% IF start_time.defined  %>
+<input type="hidden" name="start_time" value="<% start_time %>"/>
+<% END %>
 <h2>Non verbal reasoning</h2>
 <ol>
     <% FOREACH q IN nonverb %>

@@ -1,5 +1,7 @@
 package AFET::Routes;
 
+# All URLS are defined in this module
+
 use Dancer ':syntax';
 use strict;
 use warnings;
@@ -8,33 +10,64 @@ use AFET;
 use Data::Dumper;
 
 get '/army' => sub {
-    template 'army',;
+    template 'army',;    # serve army template
 };
 get '/navy' => sub {
-    template 'navy',;
+    template 'navy',;    # serve navy template
 };
 get '/raf' => sub {
-    template 'raf',;
+    template 'raf',;     # serve raf template
 };
 
+# Generate test according to service
 get '/test/generate/:service' => sub {
-    my $service = param('service');
-    debug "SERVICE1 ======" . $service;
-    my ($nonverb, $verb, $num, $mech ) = AFET::Test->generate($service);
-    template 'test',
-    {'service' => $service, 'nonverb' => $nonverb, 'verb' => $verb, 'num' => $num, 'mech' => $mech};
+    my $service = param('service');                                         # Service parameter is passed in url
+    debug "SERVICE1 ======" . $service;                                     # Output service to console log for troubleshooting
+    my ( $nonverb, $verb, $num, $mech ) = AFET::Test->generate($service);   # Call AFET::Test class, method "generate" to generate actual questions
+    template 'test',    # Template for test page
+      {                 # Pass variables to template
+        'service' => $service,
+        'nonverb' => $nonverb,
+        'verb'    => $verb,
+        'num'     => $num,
+        'mech'    => $mech
+      };
 };
 
+# Timed test is different
+get '/test/generate/timed/:service' => sub {
+    my $service    = param('service');                                      # get service variable from url
+    my $start_time = AFET::Timer->start;                                    # Call AFET::Timer class method "start"
+    my ( $nonverb, $verb, $num, $mech ) = AFET::Test->generate($service);   #Call AFET::Test class, method "generate" to generate actual questions
+    template 'test',    # we use the same template as for non timed test
+      {                 # passing variables to template
+        'service'    => $service,
+        'nonverb'    => $nonverb,
+        'verb'       => $verb,
+        'num'        => $num,
+        'mech'       => $mech,
+        'start_time' => $start_time
+      };
+};
+
+# Check answers
 post '/test/check_answers' => sub {
-    
-    my ( $result, $wrong_subcats) = AFET::Test->check_answers();
-    #print Dumper ($unique_subs);
-    debug "SUBS ======>" . $wrong_subcats;
-    #print ($wrong_subcats);
-    $wrong_subcats =~ s/([[:upper:]])/:$1/g;
-   
-    #print Dumper ($wrong_subcats);
-    template 'result',
-    {'result' => $result, 'wrong_subs' => $wrong_subcats};
+    # Call AFET::Test class method check_answers to check answers user has given and save subcategories in which user has made mistakes.
+    my ( $result, $wrong_subcats ) = AFET::Test->check_answers();
+    # Split subcat list we got from  AFET::Test->check_answers into individual subcategories
+    $wrong_subcats =~ s/([[:upper:]])/:$1/g; 
+    my $start_time = params->{start_time};                  # Get timer start time from page to see if test was timed.
+    my $time_taken;                                         # Initialise variable for time user taken to do the test
+    if ($start_time)
+    {                                                       # If test was time this variable should exist, otherwise don't bother
+        $time_taken = AFET::Timer->stop($start_time);       # Call Class AFET::Timer method stop to stop timer and get time
+        $time_taken = AFET::Timer->human_sec($time_taken);  # Convert time taken to human readable form by calling method human_sec from Class AFET::Timer
+    }
+    template 'result',                                      # set template and pass variables to it
+      {
+        'result'     => $result,
+        'wrong_subs' => $wrong_subcats,
+        'time_taken' => $time_taken
+      };
 };
 

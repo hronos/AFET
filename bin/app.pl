@@ -6,4 +6,5 @@ use AFET::Auth;
 use AFET::Testmod;
 use AFET::Routes;
 use AFET::Test;
+use AFET::Timer;
 dance;
