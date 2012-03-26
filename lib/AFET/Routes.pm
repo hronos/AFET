@@ -18,6 +18,12 @@ get '/navy' => sub {
 get '/raf' => sub {
     template 'raf',;     # serve raf template
 };
+get '/manual' => sub {
+    template 'user_manual',;     # serve raf template
+};
+get '/contact' => sub {
+    template 'contact',;     # serve raf template
+};
 
 # Generate test according to service
 get '/test/generate/:service' => sub {
@@ -50,6 +56,45 @@ get '/test/generate/timed/:service' => sub {
       };
 };
 
+# Category test
+
+get '/test/generate/nonverb/:service' => sub {
+    my $service = param('service');                                         # Service parameter is passed in url
+    my ( $nonverb, $verb, $num, $mech ) = AFET::Test->generate($service);   # Call AFET::Test class, method "generate" to generate actual questions
+    template 'test_cat',    # Template for test page
+      {                 # Pass variables to template
+        'service' => $service,
+        'nonverb' => $nonverb,
+      };
+};
+get '/test/generate/verb/:service' => sub {
+    my $service = param('service');                                         # Service parameter is passed in url
+    my ( $nonverb, $verb, $num, $mech ) = AFET::Test->generate($service);   # Call AFET::Test class, method "generate" to generate actual questions
+    template 'test_cat',    # Template for test page
+      {                 # Pass variables to template
+        'service' => $service,
+        'verb' => $verb,
+      };
+};
+get '/test/generate/num/:service' => sub {
+    my $service = param('service');                                         # Service parameter is passed in url
+    my ( $nonverb, $verb, $num, $mech ) = AFET::Test->generate($service);   # Call AFET::Test class, method "generate" to generate actual questions
+    template 'test_cat',    # Template for test page
+      {                 # Pass variables to template
+        'service' => $service,
+        'num' => $num,
+      };
+};
+get '/test/generate/mech/:service' => sub {
+    my $service = param('service');                                         # Service parameter is passed in url
+    my ( $nonverb, $verb, $num, $mech ) = AFET::Test->generate($service);   # Call AFET::Test class, method "generate" to generate actual questions
+    template 'test_cat',    # Template for test page
+      {                 # Pass variables to template
+        'service' => $service,
+        'mech' => $mech,
+      };
+};
+
 # Check answers
 post '/test/check_answers' => sub {
     # Call AFET::Test class method check_answers to check answers user has given and save subcategories in which user has made mistakes.
@@ -63,11 +108,13 @@ post '/test/check_answers' => sub {
         $time_taken = AFET::Timer->stop($start_time);       # Call Class AFET::Timer method stop to stop timer and get time
         $time_taken = AFET::Timer->human_sec($time_taken);  # Convert time taken to human readable form by calling method human_sec from Class AFET::Timer
     }
+    my $service = params->{service};
     template 'result',                                      # set template and pass variables to it
       {
         'result'     => $result,
         'wrong_subs' => $wrong_subcats,
-        'time_taken' => $time_taken
+        'time_taken' => $time_taken,
+        'service'    => $service,
       };
 };
 

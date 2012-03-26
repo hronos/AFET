@@ -2,13 +2,13 @@
 
 <ul>
     <li><a href="/test/generate/raf">Whole test</a></li>
-    <li><a href="#">Whole test against the clock</a></li>
+    <li><a href="/test/generate/timed/raf">Whole test against the clock</a></li>
     <li>Individual categories</li>
     <ul>
-        <li><a href="#">Non-verbal reasoning</a></li>
-        <li><a href="#">Verbal reasoning</a></li>
-        <li><a href="#">Mechanical comprehension</a></li>
-        <li><a href="#">Numerical reasoning</a></li>
+        <li><a href="/test/generate/nonverb/raf">Non-verbal reasoning</a></li>
+        <li><a href="/test/generate/verb/raf">Verbal reasoning</a></li>
+        <li><a href="/test/generate/mech/raf">Mechanical comprehension</a></li>
+        <li><a href="/test/generate/num/raf">Numerical reasoning</a></li>
     </ul>
     <li><a href="#">Custom test</a></li>
 </ul>

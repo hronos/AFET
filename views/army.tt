@@ -2,13 +2,12 @@
 
 <ul>
     <li><a href="/test/generate/army">Whole test</a></li>
-    <li><a href="#">Whole test against the clock</a></li>
+    <li><a href="/test/generate/timed/army">Whole test against the clock</a></li>
     <li>Individual categories</li>
     <ul>
-        <li><a href="#">Non-verbal reasoning</a></li>
-        <li><a href="#">Verbal reasoning</a></li>
-        <li><a href="#">Technical selection</a></li>
-        <li><a href="#">Numeracy</a></li>
+        <li><a href="/test/generate/nonverb/army">Non-verbal reasoning</a></li>
+        <li><a href="/test/generate/verb/army">Verbal reasoning</a></li>
+        <li><a href="/test/generate/num/army">Numeracy</a></li>
     </ul>
     <li><a href="#">Custom test</a></li>
 </ul>

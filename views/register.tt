@@ -1,14 +1,15 @@
 <h1>New user registration</h1>
 
 <form action="/register/new" method="post">
-    Username: <input type="text" name="username"/><br>
-    Password: <input type="password" name="pass"/><br>
-    Retype password: <input type="password" name="pass"/><br>
-    Email:    <input type="text" name="email"/><br>
-    <input type="hidden" name="id_roles" value="2"/><br>
-
+    <p>Username: <input type="text" name="usr" id="usr" /><span><% err_user %></span></p>
+    <p>Password: <input type="password" name="pwd" id="pwd"/><span><% err_pwd %></span></p>
+    <p>Password again : <input type="password" name="pwd2" id="pwd2"/><span><% err_pwd2 %></span></r>
+    <p>Email: <input type="text" name="email" id="email" /><span><% err_email %></span></p>
+    <p><input type="hidden" name="id_roles" value="2"/></p>
     <input type="submit" name="submit" value="Register" />
 </form>
-
+<div id="status">
+    <p style = "color: red;"><% label %></p>
+</div>
 
 

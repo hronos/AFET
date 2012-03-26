@@ -2,13 +2,13 @@
 
 <ul>
     <li><a href="/test/generate/navy">Whole test</a></li>
-    <li><a href="#">Whole test against the clock</a></li>
+    <li><a href="/test/generate/timed/navy">Whole test against the clock</a></li>
     <li>Individual categories</li>
     <ul>
-        <li><a href="#">Non-verbal reasoning</a></li>
-        <li><a href="#">Verbal reasoning</a></li>
-        <li><a href="#">Mechanical comprehension</a></li>
-        <li><a href="#">Numeracy</a></li>
+        <li><a href="/test/generate/nonverb/navy">Non-verbal reasoning</a></li>
+        <li><a href="/test/generate/verb/navy">Verbal reasoning</a></li>
+        <li><a href="/test/generate/mech/navy">Mechanical comprehension</a></li>
+        <li><a href="/test/generate/num/navy">Numeracy</a></li>
     </ul>
     <li><a href="#">Custom test</a></li>
 </ul>

@@ -7,7 +7,8 @@ use warnings;
 use Dancer::Plugin::Database;
 use Dancer::Config;
 use Dancer::Plugin::Passphrase;
-use Dancer::Plugin::Ajax;
+use Dancer::Plugin::ValidateTiny;
+use Data::Dumper;
 
 #use AFET;
 
@@ -18,16 +19,14 @@ any [ 'get', 'post' ] => '/login' => sub {
 
     if ( request->method() eq "POST" ) {
 
-        my $user =
-          database->quick_select(    # Get user login details from database
+        my $user = database->quick_select(    # Get user login details from database
             'users',
-            { username => params->{'username'},
-            }                        # select row with matching username
+            { username => params->{'username'},} # select row with matching username
           );
         if ( !defined $user->{username} ) {    # If no such user exists
-            warning "Failed login, user not recognized "
-              . params->{'username'};          # Log failed attempt and username
-            $err = "Login Failed";    # Let the user know that login failed
+            warning "Failed login, user not recognized ";
+              debug "USER ->> ". params->{'username'};          # Log failed attempt and username
+            $err = "Log in Failed";    # Let the user know that login failed
         }
         else {                        # If user exists
             if (
@@ -37,9 +36,10 @@ any [ 'get', 'post' ] => '/login' => sub {
                 return redirect '/';            # Redirect to main page
             }
             else {                              # password didn't match
-                warning "Failed login, password did not match "
-                  . params->{'password'};    # Log failed attempts and password
-                $err = "Login failed";    # Let the user know that login failed
+                warning "Failed login, password did not match " . params->{'password'};    # Log failed attempts and password
+                $err = "Log in failed";    # Let the user know that login failed
+                my $passphrase =  passphrase( params->{'password'});
+                debug "PASS HASH -->> " . $passphrase;
             }
         }
 
@@ -63,22 +63,64 @@ get '/register' => sub {
 };
 
 post '/register/new' => sub {    # Register new user
-                                 # Get parameters from template
-    my $username = params->{username} or die "missing parameter";
-    my $pass = passphrase( params->{pass} )->generate_hash
-      or die "missing parameter";
-    my $email    = params->{email}    or die "missing parameter";
-    my $id_roles = params->{id_roles} or die "missing parameter";
-
-    # Quick insert to DB
-    database->quick_insert(
-        'users',
-        {
-            username => $username,
-            pass     => $pass,
-            email    => $email,
-            id_roles => $id_roles,
+    my $label = "no label";
+    my $params = params;
+    my $valid = 0;
+    my $result = validator( $params, 'register.pl' );
+    $valid = $result->success;
+    if ($valid == 1) {
+        debug "INSIDE IF - result-valid" . $result;
+        my $username = $result->data('usr');
+        my $password = $result->data('pwd');
+        my $exists = check_username_exist($username);
+        if ( $exists == '1' ) {
+            debug "user exists";
+            $label = "user exists!";
+        } else {
+            debug "INSIDE ELSE - ADDING user";
+            $label = "user OK";
+            my $username = params->{usr} or die "missing parameter";
+            my $pass = passphrase( params->{'pwd'} )->generate_hash;
+            my $email    = params->{'email'};
+            my $id_roles = params->{'id_roles'} or die "missing parameter";
+            # Quick insert to DB
+            database->quick_insert(
+                'users',
+                {
+                    username => $username,
+                    pass     => $pass,
+                    email    => $email,
+                    id_roles => $id_roles,
+                }
+            );
+            redirect '/login';    # redirect new user to login page
         }
-    );
-    redirect '/login';    # redirect new user to login page
+        template 'register' => { label => $label };
+    } 
+    else {
+        my $errors_hash = $result->error;
+        my $err_user = $result->error('usr');
+        my $err_pwd = $result->error('pwd');
+        my $err_pwd2 = $result->error('pwd2');
+        my $err_email = $result->error('email');
+        template 'register' => {
+            err_user => $err_user,
+            err_pwd => $err_pwd,
+            err_pwd2 => $err_pwd2,
+            err_email => $err_email,
+        };
+    }    
 };
+
+sub check_username_exist {
+    my $arg = shift;
+    my $user = database->quick_select( 'users', { username => $arg, } );
+    if ( defined $user->{username} ) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+

@@ -11,11 +11,11 @@
 <div class="metanav" >
     <ul >
     <% IF not session.logged_in %>
-       <li><a href="<% login_url %>">Login</a></li>
+       <li><a href="<% login_url %>">Log in</a></li>
        <li><a href="<% register_url %>">Register</a></li>
      </ul>
      <% ELSE %>
-       <li><a href="<% logout_url %>">Logout</a></li>
+       <li><a href="<% logout_url %>">Log out</a></li>
      <% END %>
     </ul>
 </div>
@@ -26,8 +26,8 @@
        <li><a href="/navy">Navy</a></li>
        <li><a href="/raf">RAF</a></li>
        <li><a href="#">Your profile</a></li>
-       <li><a href="#">User manual</a></li>
-       <li><a href="#">Contact</a></li>
+       <li><a href="/manual">User manual</a></li>
+       <li><a href="/contact">Contact</a></li>
    </ul>
 </div>
     <div id="left"></div>

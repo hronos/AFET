@@ -9,15 +9,18 @@ use Dancer::Config;
 use Dancer::Request::Upload;
 use AFET;
 use File::Copy;
+use Dancer::Plugin::Auth::Htpasswd;
 
 use Data::Dumper;
 get '/admin' => sub {
+    auth_htpasswd 'passwd/htpasswd';
     template 'admin',;
 };
 
 # Questions section
 
 get '/admin/questions' => sub {
+    auth_htpasswd 'passwd/htpasswd';
     my $db = AFET::connect_db();
     my $sql =
 'SELECT id_quest, quest_text, ans_a, ans_b, ans_c, ans_d, right_ans, id_subcat, img FROM questions';
@@ -69,6 +72,7 @@ post '/admin/questions/add' => sub {
 # Categories section
 
 get '/admin/categories' => sub {
+    auth_htpasswd 'passwd/htpasswd';
     my $db  = AFET::connect_db();
     my $sql = 'SELECT id_categories, cat_text  FROM categories';
     my $sth = $db->prepare($sql) or die $db->errstr;
@@ -88,6 +92,7 @@ post '/admin/categories/add' => sub {
 # Subcat section
 
 get '/admin/subcat' => sub {
+    auth_htpasswd 'passwd/htpasswd';
     my $db  = AFET::connect_db();
     my $sql = 'SELECT id_subcat, subcat_name, id_categories  FROM subcat';
     my $sth = $db->prepare($sql) or die $db->errstr;
@@ -113,6 +118,7 @@ post '/admin/subcat/add' => sub {
 # Users
 
 get '/admin/users' => sub {
+    auth_htpasswd 'passwd/htpasswd';
     my $db  = AFET::connect_db();
     my $sql = 'SELECT id_user, username, pass, email, id_roles FROM users';
     my $sth = $db->prepare($sql) or die $db->errstr;

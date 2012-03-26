@@ -34,8 +34,15 @@ plugins:
         error_prefix: err_
         is_full: 1
 session: "Simple"
-username: "admin"
-password: "password"
+#username: "admin"
+#password: "password"
+
+plugins:
+   "Auth::Htpasswd":
+       paths:
+           "/admin":
+               realm: "Secret Files"
+               passwd_file: passwd/htpasswd
 
 # Where to upload files
 upload_path: "/home/webservice/AFET/public/upload"

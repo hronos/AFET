@@ -6,6 +6,7 @@ use warnings;
 use Dancer::Plugin::Database;
 use Dancer::Plugin::SimpleCRUD;
 use Dancer::Config;
+use Dancer::Plugin::Auth::Htpasswd;
 
 our $VERSION = '0.1';
 # Index page

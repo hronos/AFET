@@ -1,5 +1,5 @@
-<p>Your result is <% result  %>!</p>
-<p><% time_taken %></p>
+<p>Your result is <% result %> <% IF service == 'army' %> out of 30<% ELSE %>out of 40<% END %></p>
+<% IF time_taken.defined %><p>Time taken:<% time_taken %></p><% END %>
 <p>Subcategories you need to pay attention to are:
 <% FOREACH s IN wrong_subs.split(':')  %>
     <ul>

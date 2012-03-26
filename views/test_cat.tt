@@ -1,8 +1,6 @@
 <form action="/test/check_answers" method="post">
-<% IF start_time.defined  %>
-<input type="hidden" name="start_time" value="<% start_time %>"/>
 <input type="hidden" name="service" value="<% service %>"/>
-<% END %>
+<% IF nonverb.defined %>
 <h2>Non verbal reasoning</h2>
 <ol>
     <% FOREACH q IN nonverb %>
@@ -19,6 +17,8 @@
         </li><br>
     <% END %>
 </ol>
+<% END %>
+<% IF verb.defined %>
 <h2>Verbal reasoning</h2>
 <ol>
      <% FOREACH q IN verb %>
@@ -35,6 +35,8 @@
         </li><br>
     <% END %>
 </ol>
+<% END %>
+<% IF num.defined %>
 <h2>Numeracy</h2>
 <ol>
      <% FOREACH q IN num %>
@@ -51,7 +53,9 @@
         </li><br>
     <% END %>
 </ol>
+<% END %>
 <% IF service != 'army'  %>
+<% IF mech.defined %>
 <h2>Mechanical Comprehension</h2>
 <ol>
     <% FOREACH q IN mech %>
@@ -68,6 +72,7 @@
         </li><br>
     <% END %>
 </ol>
+<% END %>
 <% END  %>
 <input type="submit" value="Check!" />
 </form>
