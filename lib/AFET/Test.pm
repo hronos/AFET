@@ -1,4 +1,6 @@
+# Class for everything to do with tests
 package AFET::Test;
+
 
 use Dancer ':syntax';
 use strict;
@@ -7,9 +9,11 @@ use Dancer::Config;
 use Dancer::Plugin::Database;
 use Data::Dumper;
 
-my $db = AFET->connect_db();
+my $db = AFET->connect_db(); # Call our main class AFET, method connect_db
 my $sql;
 my $sth;
+
+####  Define SQL for different categories/service ####
 my $army_nonverb =
 'SELECT id_quest, quest_text, ans_a, ans_b, ans_c, ans_d, right_ans, img, id_subcat FROM questions where id_subcat = 1 OR id_subcat = 2 ORDER BY RANDOM() LIMIT 10';
 my $army_verb =
@@ -34,31 +38,35 @@ my $raf_num =
 'SELECT id_quest, quest_text, ans_a, ans_b, ans_c, ans_d, right_ans, img, id_subcat FROM questions where id_subcat = 20 OR id_subcat = 24  OR id_subcat = 25 OR id_subcat = 27 OR id_subcat = 28 ORDER BY RANDOM() LIMIT 10';
 my $raf_mech =
 'SELECT id_quest, quest_text, ans_a, ans_b, ans_c, ans_d, right_ans, img, id_subcat FROM questions where id_subcat = 13 OR id_subcat = 14  OR id_subcat = 15 OR id_subcat = 16 OR id_subcat = 17 OR id_subcat = 18 OR id_subcat = 19 ORDER BY RANDOM() LIMIT 10';
+### END SQL ####
 
+### Global class variables ###
 my $nonverb;
 my $verb;
 my $mech;
 my $num;
 my $result;
+### End variables ###
 
+# Generate questions method
 sub generate {
 
-    my $service = $_[1];
+    my $service = $_[1]; # Service gets passed to class as 2nd member of array. First member will always be class name - AFET::Test
 
-    if ( $service eq 'army' ) {
+    if ( $service eq 'army' ) {                     # Army test
         $nonverb = get_questions($army_nonverb);
         $verb    = get_questions($army_verb);
         $num     = get_questions($army_num);
-        $mech    = '';
+        $mech    = '';                              # there is no mechanical comprehension
     }
-    elsif ( $service eq 'navy' ) {
+    elsif ( $service eq 'navy' ) {                  # Navy test
         $nonverb = get_questions($navy_nonverb);
         $verb    = get_questions($navy_verb);
         $num     = get_questions($navy_num);
         $mech    = get_questions($navy_mech);
     }
     else {
-        $nonverb = get_questions($raf_nonverb);
+        $nonverb = get_questions($raf_nonverb);     # Raf test
         $verb    = get_questions($raf_verb);
         $num     = get_questions($raf_num);
         $mech    = get_questions($raf_mech);
@@ -67,50 +75,53 @@ sub generate {
 
 }
 
+# Check answers method
 sub check_answers {
-    $result = 0;
+    $result = 0;                                                        # Initial result is 0
     my $right_answer;
     my $given_answer;
-    my @wrong_subcats;
-    my $ids_ref = params->{'id_quest'};
-    foreach my $id ( ref($ids_ref) ? @$ids_ref : $ids_ref ) {
-
-        #print Dumper ($id);
-        $right_answer = params->{"right_ans_$id"};
-        $given_answer = params->{"answer_$id"};
-        if ( defined $given_answer && $given_answer eq $right_answer ) {
+    my @wrong_subcats;                                                  # We want to know subcategories in which user made mistakes.
+    my $ids_ref = params->{'id_quest'};                                 # Get question ids from form
+    foreach my $id ( ref($ids_ref) ? @$ids_ref : $ids_ref ) {           # Dereference id array and split into individual ids.
+        $right_answer = params->{"right_ans_$id"};                      # Get right answer for this question
+        $given_answer = params->{"answer_$id"};                         # Get whatever user entered
+        if ( defined $given_answer && $given_answer eq $right_answer ) {# RIGHT answer
             $result++;
         }
         else {
-            my $wrong_subcat = params->{"subcat_$id"};
-            if ( $wrong_subcat ) {
-                my $subcat = get_subcat_name($wrong_subcat);
+            my $wrong_subcat = params->{"subcat_$id"};                  # WRONG answer
+            if ( $wrong_subcat ) {                                      # Add subcategory to array
+                my $subcat = get_subcat_name($wrong_subcat);            # Call get subcat name by id function
                 push (@wrong_subcats, $subcat);
-                debug "WRONG SUBS" . @wrong_subcats; 
+                debug "WRONG SUBS" . @wrong_subcats;                    # output to log console for debugging
             }
         }
     }
+    ### Making wrong subs array unique - hash keys have to be unique, hence can be done as following: ###
     my %seen;
     @seen{@wrong_subcats} = ();
     my @unique_subs = keys %seen;
-    
-    #print Dumper(@unique_subs);
-    my $sub_scal = "@unique_subs";
+    ### Unique end ###
+
+    my $sub_scal = "@unique_subs"; # Assign array to scalar to return 
     return ( $result, $sub_scal);
 
 }
 
-sub get_questions {
-    $sql = shift;
-    $sth = $db->prepare($sql) or die $db->errstr;
-    $sth->execute() or die $sth->errstr;
-    my $questions = $sth->fetchall_arrayref( {} );
-    return $questions;
+# Get questions method
+sub get_questions {                                                     
+    $sql = shift;                                                       # get sql string passed to method
+    $sth = $db->prepare($sql) or die $db->errstr;                       # connect to database or die if fails
+    $sth->execute() or die $sth->errstr;                                # execute sql or die if fails
+    my $questions = $sth->fetchall_arrayref( {} );                      # Get questions array
+    return $questions;                      
 }
+
+# Method to get subcat name by its id
 sub get_subcat_name {
-    my $id = shift;
-    my $subcat_name = database->quick_select('subcat', {id_subcat => $id});
-    $subcat_name = $subcat_name->{subcat_name};
+    my $id = shift;                                                         # get id passed to us
+    my $subcat_name = database->quick_select('subcat', {id_subcat => $id}); # Do a quick select by id
+    $subcat_name = $subcat_name->{subcat_name};                             # Get a name
     return $subcat_name;
 }
 
