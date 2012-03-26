@@ -31,7 +31,7 @@ my $navy_mech =
 'SELECT id_quest, quest_text, ans_a, ans_b, ans_c, ans_d, right_ans, img, id_subcat FROM questions where id_subcat = 13 OR id_subcat = 14  OR id_subcat = 15 OR id_subcat = 16 OR id_subcat = 17 OR id_subcat = 18 ORDER BY RANDOM() LIMIT 10';
 
 my $raf_nonverb =
-'SELECT id_quest, quest_text, ans_a, ans_b, ans_c, ans_d, right_ans, img, id_subcat FROM questions where id_subcat = 2 OR id_subcat = 3 ORDER BY RANDOM() LIMIT 10';
+'SELECT id_quest, quest_text, ans_a, ans_b, ans_c, ans_d, right_ans, img, id_subcat FROM questions where id_subcat = 2 OR id_subcat = 3 OR id_subcat = 4 ORDER BY RANDOM() LIMIT 10';
 my $raf_verb =
 'SELECT id_quest, quest_text, ans_a, ans_b, ans_c, ans_d, right_ans, img, id_subcat FROM questions where id_subcat = 8 OR id_subcat = 11 OR id_subcat = 4 ORDER BY RANDOM() LIMIT 10';
 my $raf_num =
