@@ -98,9 +98,9 @@ sub check_answers {
         }
     }
     ### Making wrong subs array unique - hash keys have to be unique, hence can be done as following: ###
-    my %seen;
-    @seen{@wrong_subcats} = ();
-    my @unique_subs = keys %seen;
+    my %seen;                                                           # Define hash
+    @seen{@wrong_subcats} = ();                                         # Map array wrong subs to hash
+    my @unique_subs = keys %seen;                                       # assign keys from hash to new unique array
     ### Unique end ###
 
     my $sub_scal = "@unique_subs"; # Assign array to scalar to return 
