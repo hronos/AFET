@@ -1,0 +1,7 @@
+<h1>Profile</h1>
+<% IF not session.logged_in %>
+    <p>Oops, it looks like you need to log in first!</p>
+<% ELSE %>
+    <h2>Welcome to your profile, <% session.username %>!</h2>
+<% END %>
+

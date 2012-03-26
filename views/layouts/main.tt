@@ -15,6 +15,7 @@
        <li><a href="<% register_url %>">Register</a></li>
      </ul>
      <% ELSE %>
+       
        <li><a href="<% logout_url %>">Log out</a></li>
      <% END %>
     </ul>
@@ -26,7 +27,7 @@
        <li><a href="/army">Army</a></li>
        <li><a href="/navy">Navy</a></li>
        <li><a href="/raf">RAF</a></li>
-       <li><a href="#">Your profile</a></li>
+       <li><a href="/profile">Your profile</a></li>
        <li><a href="/manual">User manual</a></li>
        <li><a href="/contact">Contact</a></li>
    </ul>

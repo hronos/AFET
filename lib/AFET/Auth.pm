@@ -23,6 +23,7 @@ any [ 'get', 'post' ] => '/login' => sub {
             'users',
             { username => params->{'username'},} # select row with matching username
           );
+        my $user_id = $user->{id_user};         # Get user id to use in session
         if ( !defined $user->{username} ) {    # If no such user exists
             warning "Failed login, user not recognized ";
               debug "USER ->> ". params->{'username'};          # Log failed attempt and username
@@ -32,14 +33,15 @@ any [ 'get', 'post' ] => '/login' => sub {
             if (
                 passphrase( params->{'password'} )->matches( $user->{'pass'} ) )
             {    # Check if password entered matches stored hash
-                session 'logged_in' => true;    # set session
+                session 'logged_in' => true;                # set session true
+                session 'user_id'   => $user_id;            # Store user id
+                session 'username'  => $user->{username};   # Store username
+               
                 return redirect '/';            # Redirect to main page
             }
             else {                              # password didn't match
                 warning "Failed login, password did not match " . params->{'password'};    # Log failed attempts and password
                 $err = "Log in failed";    # Let the user know that login failed
-                my $passphrase =  passphrase( params->{'password'});
-                debug "PASS HASH -->> " . $passphrase;
             }
         }
 

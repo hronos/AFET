@@ -1,8 +1,8 @@
 <form action="/test/check_answers" method="post">
 <% IF start_time.defined  %>
 <input type="hidden" name="start_time" value="<% start_time %>"/>
-<input type="hidden" name="service" value="<% service %>"/>
 <% END %>
+<input type="hidden" name="service" value="<% service %>"/>
 <h2>Non verbal reasoning</h2>
 <ol>
     <% FOREACH q IN nonverb %>

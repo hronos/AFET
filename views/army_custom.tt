@@ -1,0 +1,25 @@
+<h1>Army tests</h1>
+<h2>Create custom test</h2>
+<form action="/test/generate/custom/army" method="post">
+<ul>
+    <li>Non-verbal reasoning</li>
+    <ul>
+        <li><input type="checkbox" name="rotation" value="1"/>Symbol rotation</li>
+        <li><input type="checkbox" name="pattern" value="4"/>Patterns</li>
+    </ul>
+    <li>Verbal reasoning</li>
+    <ul>
+        <li><input type="checkbox" name="relationships" value="5"/>Relationships</li>
+        <li><input type="checkbox" name="letter" value="6"/>Letter checking</li>
+        <li><input type="checkbox" name="odd" value="8"/>Selecting the odd one out</li>
+    </ul>
+    <li>Numeracy</li>
+    <ul>
+        <li><input type="checkbox" name="distance" value="29"/>Distance number</li>
+        <li><input type="checkbox" name="math" value="20"/>Basic maths</li>
+        <li><input type="checkbox" name="decimals" value="24"/>Decimals</li>
+        <li><input type="checkbox" name="fractions" value="25"/>Fractions</li>
+    </ul>
+</ul>
+<input type="submit" value="Generate!" />
+</form>

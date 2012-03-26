@@ -12,17 +12,32 @@ use Data::Dumper;
 get '/army' => sub {
     template 'army',;    # serve army template
 };
+get '/army/custom' => sub {
+    template 'army_custom',;    # serve army template
+};
 get '/navy' => sub {
     template 'navy',;    # serve navy template
 };
 get '/raf' => sub {
     template 'raf',;     # serve raf template
 };
+get '/profile' => sub {
+    template 'profile',;     # serve raf template
+};
 get '/manual' => sub {
     template 'user_manual',;     # serve raf template
 };
 get '/contact' => sub {
     template 'contact',;     # serve raf template
+};
+
+# Generate custom tests for each service
+
+post '/test/generate/custom/:service' => sub {
+    my $service = param('service');
+    my $params = params;
+    print Dumper ($params);
+    template 'test',;
 };
 
 # Generate test according to service
