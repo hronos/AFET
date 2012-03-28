@@ -38,6 +38,7 @@ my $raf_num =
 'SELECT id_quest, quest_text, ans_a, ans_b, ans_c, ans_d, right_ans, img, id_subcat FROM questions where id_subcat = 20 OR id_subcat = 24  OR id_subcat = 25 OR id_subcat = 27 OR id_subcat = 28 ORDER BY RANDOM() LIMIT 10';
 my $raf_mech =
 'SELECT id_quest, quest_text, ans_a, ans_b, ans_c, ans_d, right_ans, img, id_subcat FROM questions where id_subcat = 13 OR id_subcat = 14  OR id_subcat = 15 OR id_subcat = 16 OR id_subcat = 17 OR id_subcat = 18 OR id_subcat = 19 ORDER BY RANDOM() LIMIT 10';
+my $custom;
 ### END SQL ####
 
 ### Global class variables ###

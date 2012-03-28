@@ -1,0 +1,38 @@
+<h1>Navy tests</h1>
+<h2>Create custom test</h2>
+<form action="/test/generate/custom/navy" method="post">
+<ul>
+    <li>Non-verbal reasoning</li>
+    <ul>
+        <li><input type="checkbox" name="work" value="2"/>Work rate</li>
+        <li><input type="checkbox" name="pattern" value="4"/>Patterns</li>
+    </ul>
+    <li>Verbal reasoning</li>
+    <ul>
+        <li><input type="checkbox" name="relationships" value="5"/>Relationships</li>
+        <li><input type="checkbox" name="comparison" value="9"/>Comparison</li>
+        <li><input type="checkbox" name="odd" value="8"/>Selecting the odd one out</li>
+        <li><input type="checkbox" name="alph" value="10"/>Alphabetical order</li>
+        <li><input type="checkbox" name="sequence" value="11"/>Sequence</li>
+        <li><input type="checkbox" name="missing" value="12"/>Missing word</li>
+    </ul>
+    <li>Numeracy</li>
+    <ul>
+        <li><input type="checkbox" name="percentage" value="22"/>Percentage</li>
+        <li><input type="checkbox" name="math" value="20"/>Basic maths</li>
+        <li><input type="checkbox" name="decimals" value="24"/>Decimals</li>
+        <li><input type="checkbox" name="fractions" value="25"/>Fractions</li>
+        <li><input type="checkbox" name="shapes" value="23"/>Basic shapes</li>
+    </ul>
+    <li>Mechanical comprehension</li>
+    <ul>
+        <li><input type="checkbox" name="wheels" value="13"/>Wheels</li>
+        <li><input type="checkbox" name="gears" value="14"/>Gears</li>
+        <li><input type="checkbox" name="liquid" value="15"/>Liquid and gas</li>
+        <li><input type="checkbox" name="balance" value="16"/>Balance</li>
+        <li><input type="checkbox" name="pulley" value="17"/>Pulley and levers</li>
+        <li><input type="checkbox" name="pressure" value="18"/>Pressure</li>
+    </ul>
+</ul>
+<input type="submit" value="Generate!" />
+</form>

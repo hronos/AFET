@@ -1,0 +1,37 @@
+<h1>RAF tests</h1>
+<h2>Create custom test</h2>
+<form action="/test/generate/custom/raf" method="post">
+<ul>
+    <li>Non-verbal reasoning</li>
+    <ul>
+        <li><input type="checkbox" name="work" value="2"/>Work rate</li>
+        <li><input type="checkbox" name="pattern" value="4"/>Patterns</li>
+        <li><input type="checkbox" name="spatial" value="3"/>Spatial reasoning</li>
+    </ul>
+    <li>Verbal reasoning</li>
+    <ul>
+        <li><input type="checkbox" name="odd" value="8"/>Selecting the odd one out</li>
+        <li><input type="checkbox" name="sequence" value="11"/>Sequence</li>
+        <li><input type="checkbox" name="missing" value="12"/>Missing word</li>
+    </ul>
+    <li>Numeracy</li>
+    <ul>
+        <li><input type="checkbox" name="tables" value="27"/>Tables and graphs</li>
+        <li><input type="checkbox" name="math" value="20"/>Basic maths</li>
+        <li><input type="checkbox" name="decimals" value="24"/>Decimals</li>
+        <li><input type="checkbox" name="fractions" value="25"/>Fractions</li>
+        <li><input type="checkbox" name="money" value="28"/>Money</li>
+    </ul>
+    <li>Mechanical comprehension</li>
+    <ul>
+        <li><input type="checkbox" name="wheels" value="13"/>Wheels</li>
+        <li><input type="checkbox" name="gears" value="14"/>Gears</li>
+        <li><input type="checkbox" name="liquid" value="15"/>Liquid and gas</li>
+        <li><input type="checkbox" name="balance" value="16"/>Balance</li>
+        <li><input type="checkbox" name="pulley" value="17"/>Pulley and levers</li>
+        <li><input type="checkbox" name="pressure" value="18"/>Pressure</li>
+        <li><input type="checkbox" name="electrical" value="19"/>Electrical comprehension</li>
+    </ul>
+</ul>
+<input type="submit" value="Generate!" />
+</form>

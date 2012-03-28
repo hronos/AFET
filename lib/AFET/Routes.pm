@@ -18,8 +18,14 @@ get '/army/custom' => sub {
 get '/navy' => sub {
     template 'navy',;    # serve navy template
 };
+get '/navy/custom' => sub {
+    template 'navy_custom',;    # serve army template
+};
 get '/raf' => sub {
     template 'raf',;     # serve raf template
+};
+get '/raf/custom' => sub {
+    template 'raf_custom',;    # serve army template
 };
 get '/profile' => sub {
     template 'profile',;     # serve raf template
@@ -35,9 +41,17 @@ get '/contact' => sub {
 
 post '/test/generate/custom/:service' => sub {
     my $service = param('service');
-    my $params = params;
-    print Dumper ($params);
-    template 'test',;
+    my %params = params;
+    my @sub_ids;
+    foreach my $val (values (%params)){
+        if ($val ne $service){
+            push (@sub_ids, $val);
+        }
+    }
+    my $sub_ids = join (',', @sub_ids);
+    my $sql = "SELECT id_quest, quest_text, ans_a, ans_b, ans_c, ans_d, right_ans, img, id_subcat FROM questions where id_subcat in ($sub_ids) ORDER BY RANDOM() LIMIT 20";
+    my $custom = AFET::Test::get_questions($sql);
+    template 'test_custom', { 'custom' => $custom };
 };
 
 # Generate test according to service

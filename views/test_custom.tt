@@ -1,0 +1,21 @@
+<form action="/test/check_answers" method="post">
+<input type="hidden" name="service" value="<% service %>"/>
+<h2>Custom test</h2>
+<ol>
+    <% FOREACH q IN custom %>
+        <li>
+        <input type="hidden" name="id_quest" value="<% q.id_quest %>"/>
+        <input type="hidden" name="right_ans_<% q.id_quest %>" value="<% q.right_ans %>"/>
+        <input type="hidden" name="subcat_<% q.id_quest %>" value="<% q.id_subcat %>"/>
+        <% q.quest_text %><br>
+        <% IF q.img %><br><img src="<% q.img %>"/><br><br><% END %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "A"><% q.ans_a %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "B"><% q.ans_b %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "C"><% q.ans_c %>
+        <input type ="radio" name="answer_<% q.id_quest %>" value = "D"><% q.ans_d %>
+        </li><br>
+    <% END %>
+</ol>
+<input type="submit" value="Check!" />
+</form>
+

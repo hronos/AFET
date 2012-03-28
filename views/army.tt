@@ -10,5 +10,5 @@
         <li><a href="/test/generate/verb/army">Verbal reasoning</a></li>
         <li><a href="/test/generate/num/army">Numeracy</a></li>
     </ul>
-    <li><a href="#">Custom test</a></li>
+    <li><a href="/army/custom">Custom test</a></li>
 </ul>

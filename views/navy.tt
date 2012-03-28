@@ -11,5 +11,5 @@
         <li><a href="/test/generate/mech/navy">Mechanical comprehension</a></li>
         <li><a href="/test/generate/num/navy">Numeracy</a></li>
     </ul>
-    <li><a href="#">Custom test</a></li>
+    <li><a href="/navy/custom">Custom test</a></li>
 </ul>
