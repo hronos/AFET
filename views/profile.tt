@@ -18,6 +18,22 @@
         <% END %>
     </table>
     <% END %>
+    <h3>Saved results</h3>
+    <% IF results.size == 0 %>
+        <p>You have no results yet</p>
+    <% ELSE %>
+    <table border=1>
+    <th>ID</th><th>date</th><th>result</th><th>time taken</th>
+        <% FOREACH r in results %>
+        <tr>
+            <td><% r.id_result %></td>
+            <td><% r.date %></td>
+            <td><% r.ans_ratio %></td>
+            <td><% r.time_taken %></td>
+        <tr>
+        <% END %>
+    </table>
+    <% END %>
     
 <% END %>
 

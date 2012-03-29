@@ -125,10 +125,6 @@ sub get_subcat_name {
     $subcat_name = $subcat_name->{subcat_name};                             # Get a name
     return $subcat_name;
 }
-sub save {
-    my $uid = $_[1];
-    my $sub_ids = $_[2];
-}
 
 true;
 

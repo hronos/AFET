@@ -1,5 +1,14 @@
-<p>Your result is <% result %> <% IF service == 'army' %> out of 30<% ELSE %>out of 40<% END %></p>
-<% IF time_taken.defined %><p>Time taken:<% time_taken %></p><% END %>
+<p>Your result is <% result %> <% IF service == 'army' %> out of 30</p>
+<% ELSE %>out of 40<% END %></p>
+<% IF time_taken.defined %><p>Time taken:<% time_taken %></p>
+<% IF session.logged_in %>
+<form action="/test/save/result" method="post">
+<input type="hidden" name="user_id" value="<% session.user_id %>"/>
+<input type="hidden" name="time_taken" value="<% time_taken %>"/>
+<input type="hidden" name="result" value="<% result %>"/>
+<input type="submit" value="Save result" />
+<% END %>
+<% END %>
 <p>Subcategories you need to pay attention to are:
 <% FOREACH s IN wrong_subs.split(':')  %>
     <ul>

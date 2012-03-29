@@ -145,6 +145,7 @@ post '/admin/users/add' => sub {
     redirect '/admin/users';
 };
 
+# Direct access to the database via module
 # User CRUD
 
 simple_crud(
