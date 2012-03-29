@@ -1,5 +1,7 @@
 <form action="/test/check_answers" method="post">
 <input type="hidden" name="service" value="<% service %>"/>
+<input type="hidden" name="is_custom" value="<% is_custom %>"/>
+<input type="hidden" name="sub_ids" value="<% sub_ids %>"/>
 <h2>Custom test</h2>
 <ol>
     <% FOREACH q IN custom %>

@@ -7,5 +7,6 @@ use AFET::Testmod;
 use AFET::Routes;
 use AFET::Test;
 use AFET::Timer;
+use AFET::Custom;
 use Dancer::Plugin::Auth::Htpasswd;
 dance;

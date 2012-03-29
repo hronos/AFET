@@ -7,6 +7,7 @@ use strict;
 use warnings;
 use Dancer::Config;
 use AFET;
+use Dancer::Plugin::Database;
 use Data::Dumper;
 
 get '/army' => sub {
@@ -28,7 +29,12 @@ get '/raf/custom' => sub {
     template 'raf_custom',;    # serve army template
 };
 get '/profile' => sub {
-    template 'profile',;     # serve raf template
+    my $uid = session 'user_id';
+    my $custom_tests;
+    if ($uid){
+        $custom_tests = AFET::Custom->list($uid);
+    }
+    template 'profile', {'custom_tests' => $custom_tests}     # profile
 };
 get '/manual' => sub {
     template 'user_manual',;     # serve raf template
@@ -51,7 +57,15 @@ post '/test/generate/custom/:service' => sub {
     my $sub_ids = join (',', @sub_ids);
     my $sql = "SELECT id_quest, quest_text, ans_a, ans_b, ans_c, ans_d, right_ans, img, id_subcat FROM questions where id_subcat in ($sub_ids) ORDER BY RANDOM() LIMIT 20";
     my $custom = AFET::Test::get_questions($sql);
-    template 'test_custom', { 'custom' => $custom };
+    template 'test_custom', { 'custom' => $custom, 'is_custom' => '1', 'sub_ids' => $sub_ids };
+};
+
+get '/test/load/custom/:testid' => sub {
+    my $test_id = param('testid');
+    my $db_row = database->quick_select( 'custom_test', { id_test => $test_id });
+    my $sub_ids = $db_row->{subcat_array};
+    my $custom = AFET::Custom->load($sub_ids);
+    template 'test_custom', { 'custom' => $custom, 'is_custom' => '1', 'sub_ids' => $sub_ids };
 };
 
 # Generate test according to service
@@ -137,6 +151,8 @@ post '/test/check_answers' => sub {
         $time_taken = AFET::Timer->stop($start_time);       # Call Class AFET::Timer method stop to stop timer and get time
         $time_taken = AFET::Timer->human_sec($time_taken);  # Convert time taken to human readable form by calling method human_sec from Class AFET::Timer
     }
+    my $is_custom = params->{'is_custom'};                              # To see if that was custom test
+    my $sub_ids = params->{'sub_ids'};                                  # To save later if that was custom test
     my $service = params->{service};
     template 'result',                                      # set template and pass variables to it
       {
@@ -144,6 +160,20 @@ post '/test/check_answers' => sub {
         'wrong_subs' => $wrong_subcats,
         'time_taken' => $time_taken,
         'service'    => $service,
+        'is_custom'  => $is_custom,
+        'sub_ids'    => $sub_ids,
       };
 };
 
+post '/test/save' => sub {
+    my $uid = params->{'user_id'};
+    my $sub_ids = params->{'sub_ids'};
+    database->quick_insert(
+        'custom_test',
+        {
+            id_user         => $uid,
+            subcat_array    => $sub_ids,
+        }
+    );
+    redirect '/profile';
+};

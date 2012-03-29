@@ -3,5 +3,21 @@
     <p>Oops, it looks like you need to log in first!</p>
 <% ELSE %>
     <h2>Welcome to your profile, <% session.username %>!</h2>
+    <h3>Saved tests</h3>
+    <% IF custom_tests.size == 0 %>
+        <p>You have no saved tests</p>
+    <% ELSE %>
+    <table border=1>
+    <th>ID</th><th>sub_ids</th>
+        <% FOREACH t in custom_tests %>
+        <tr>
+            <td><% t.id_test %></td>
+            <td><% t.subcat_array %></td>
+            <td><a href="/test/load/custom/<% t.id_test %>">Load!</td>
+        <tr>
+        <% END %>
+    </table>
+    <% END %>
+    
 <% END %>
 

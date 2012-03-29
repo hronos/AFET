@@ -8,3 +8,13 @@
     <% END %>
     </ul>
 <% END  %>
+<% IF session.logged_in %>
+    <% IF is_custom == 1%>
+        <form action="/test/save" method="post">
+            <input type="hidden" name="sub_ids" value="<% sub_ids %>"/>
+            <input type="hidden" name="user_id" value="<% session.user_id %>"/>
+            <input type="submit" value="Save test" />
+        </form>
+    <% END %>
+<% END %>
+    
