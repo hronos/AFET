@@ -4,9 +4,9 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
     NAME                => 'AFET',
-    AUTHOR              => q{YOUR NAME <youremail@example.com>},
+    AUTHOR              => q{TAMARA LENNART <lennartta@gmail.com>},
     VERSION_FROM        => 'lib/AFET.pm',
-    ABSTRACT            => 'YOUR APPLICATION ABSTRACT',
+    ABSTRACT            => 'AFET ABSTRACT',
     ($ExtUtils::MakeMaker::VERSION >= 6.3002
       ? ('LICENSE'=> 'perl')
       : ()),
