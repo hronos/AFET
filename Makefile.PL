@@ -4,7 +4,7 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
     NAME                => 'AFET',
-    AUTHOR              => q{TAMARA LENNART <lennartta@gmail.com>},
+    AUTHOR              => q{DANIEL LENNART <dlennart.uk@gmail.com>},
     VERSION_FROM        => 'lib/AFET.pm',
     ABSTRACT            => 'AFET ABSTRACT',
     ($ExtUtils::MakeMaker::VERSION >= 6.3002
